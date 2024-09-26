@@ -2,7 +2,10 @@ package com.scm.scm2_0.controllers;
 
 import com.scm.scm2_0.entities.User;
 import com.scm.scm2_0.forms.UserForm;
+import com.scm.scm2_0.helpers.Message;
+import com.scm.scm2_0.helpers.MessageType;
 import com.scm.scm2_0.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,27 +70,23 @@ public class PageController {
 
     // Processing register
     @PostMapping("/do-register")
-    public String processRegister(@ModelAttribute UserForm userForm){
+    public String processRegister(@ModelAttribute UserForm userForm, HttpSession session){
         System.out.println("Processing Registration");
 
-        // fetch form data
-        // validate form data
-        // save to the database
-        User user = User.builder()
-                .name(userForm.getName())
-                .email(userForm.getEmail())
-                .password(userForm.getPassword())
-                .phoneNumber(userForm.getPhoneNumber())
-                .about(userForm.getAbout())
-                .profilePic(
-                        "https://isobarscience-1bfd8.kxcdn.com/wp-content/uploads/2020/09/default-profile-picture1.jpg"
-                ).build();
+        User user = new User();
+        user.setName(userForm.getName());
+        user.setEmail(userForm.getEmail());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+        user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setProfilePic("https://isobarscience-1bfd8.kxcdn.com/wp-content/uploads/2020/09/default-profile-picture1.jpg");
 
         User savedUser = userService.saveUser(user);
         System.out.println("The inserted user is : " + savedUser);
-        // message = "Registration Successful"
-        // redirect to login page
-        // System.out.println(userForm);
+
+        Message message = Message.builder().content("Registration Successful").type(MessageType.red).build();
+
+        session.setAttribute("message", message);
 
         return "redirect:/register";
     }
