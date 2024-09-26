@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html
+        lang="en"
+        th:replace="~{base::parent(~{::#content}, ~{::title}, ~{::script})}"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>About</title>
 </head>
 <body>
-<h1>This ia about Page</h1>
-<hr>
-<!-- using fragment -->
-<div th:replace="${isLogin} ? ~{base :: parent(~{::section})} : ~{base :: test(~{::#notLoggedIn})}">
-    <section>
-        <h1>User is Logged in</h1>
-        <h2>This is dynamic about content passed to base parent</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium alias aliquam aliquid consequuntur deserunt expedita harum id inventore maiores necessitatibus non odio, officiis omnis optio porro, rerum suscipit veritatis.</p>
-        <button>Click on Dynamic Content</button>
-    </section>
-    <section id="notLoggedIn">
-        <h1>User Not Logged In</h1>
-    </section>
+<div id="content">
+    <h1>Welcome to About Page</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequuntur dolor et itaque obcaecati odit rem, rerum ut! Consectetur corporis debitis doloribus eos incidunt laudantium placeat repellat similique tempora vitae?</p>
 </div>
+<script>
+    console.log("services");
+</script>
 </body>
 </html>
