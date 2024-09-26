@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            margin: auto;
+            width: 50%;
+            padding: 30px;
+            background: #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 data-th-text="${name}">Welcome to Home page</h1>
+        <p>Youtube Channel: <span data-th-text="${youtubeChannel}"></span></p>
+        <p>GitHub Repo Link: <span data-th-text="${githubRepository}"></span></p>
+
+        <a th:href="${githubRepository}">Click here to Open</a>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam consequuntur culpa cum doloribus esse excepturi, hic incidunt magnam minus nam neque pariatur quasi, rem sequi temporibus ullam unde, velit voluptatibus!</p>
+    </div>
+</body>
+</html>
