@@ -18,4 +18,19 @@ public class PageController {
 
         return "home";
     }
+
+    // About Route
+    @RequestMapping("/about")
+    public String aboutPage(Model model){
+        model.addAttribute("isLogin", false);
+        System.out.println("About Page Loading");
+        return "about";
+    }
+
+    // Services Route
+    @RequestMapping("/services")
+    public String servicesPage(){
+        System.out.println("Services Page Loading");
+        return "services";
+    }
 }
