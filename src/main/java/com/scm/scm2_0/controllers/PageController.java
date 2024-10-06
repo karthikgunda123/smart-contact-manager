@@ -22,6 +22,11 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/home";
+    }
+
     @RequestMapping("/home")
     public String home(Model model){
         System.out.println("Home Page handler");
@@ -89,7 +94,7 @@ public class PageController {
         User savedUser = userService.saveUser(user);
         System.out.println("The inserted user is : " + savedUser);
 
-        Message message = Message.builder().content("Registration Successful").type(MessageType.red).build();
+        Message message = Message.builder().content("Registration Successful").type(MessageType.green).build();
 
         session.setAttribute("message", message);
 
